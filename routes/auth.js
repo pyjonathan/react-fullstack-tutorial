@@ -6,7 +6,6 @@ const validateRegisterInput = require("../validation/registerValidation");
 const jwt = require("jsonwebtoken");
 const requiresAuth = require("../middleware/permissions");
 
-
 // @route  GET /api/auth/test
 // @desc  Test the auth route
 // @access Public
@@ -121,12 +120,11 @@ router.post("/login", async (req, res) => {
 // @desc  Return the currently authed user
 // @access Private
 router.get("/current", requiresAuth, (req, res) => {
-  if(!req.user) {
+  if (!req.user) {
     return res.status(401).send("Unauthorized");
   }
 
   return res.json(req.user);
 });
-
 
 module.exports = router;
